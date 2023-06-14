@@ -1,0 +1,32 @@
+html,
+body {
+    margin: 0;
+    /* height: 100%; */
+}
+
+body {
+    background-image: url("./gym.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2cm;
+    width: 35%;
+    background-color: rgb(55, 55, 55);
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+/* .container {
+    padding: 2px 16px;
+} */
