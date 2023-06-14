@@ -36,6 +36,9 @@ class LoginController extends Controller
             return back()->with('success', 'Login Success');
 
             return redirect()->intended('/kasir');
+            return redirect()->intended('/kasir');
+
+            
         }
 
 
