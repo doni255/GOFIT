@@ -16,41 +16,28 @@
         </div>
     @endif
 
-@if (session()->has('loginError'))
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ session('loginError') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+
+    <form name="f1" action="" onSubmit="return validation()" method="POST">
+        @csrf
+        <div class="mb-3">      
+            <label for="email" class="form-label">Email</label>
+            <input class="form-control" type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email"          
+            >
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
     
-@endif
+        <div class="d-grid gap-2 mt-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    
+        <p class="mt-3">Don`t have account yet?<a href="{{ url('/register') }}"> Click here!</a></p>
+              
+    </form>
 
-<form name="f1" action="/login" onSubmit="return validation()" method="post">
-    @csrf
-    <div class="mb-3">      
-        <label for="email" class="form-label">Email</label>
-        <input class="form-control   @error('email')
-            is-invalid
-        @enderror" type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email"
-            value="{{ old ('email') }}"
-        >
-        @error('email')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-    </div>
 
-    <div class="d-grid gap-2 mt-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-
-    <p class="mt-3">Don`t have account yet?<a href="{{ url('/register') }}"> Click here!</a></p>
-          
-</form>
 
 @endsection
 

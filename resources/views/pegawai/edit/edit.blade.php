@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
     {{-- Google Font: Source Sans Pro --}}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400,400i,700&display=fallback">
     {{-- Font Awesome Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     {{-- Theme style --}}
@@ -13,9 +13,9 @@
 
 
     {{-- Boostrap GLYPH --}}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -104,7 +104,7 @@
             {{-- Sidebar --}}
             <div class="sidebar">
                 {{-- Sidebar user panel (optional) --}}
-                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                {{-- <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                     <div class="image">
                         <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
@@ -168,7 +168,61 @@
         </aside>
         {{-- Content Wrapper. Contains page content --}}
         <div class="content-wrapper">
-            @yield('content')
+
+                <div class="content-header">
+                    <div class="container-xl">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{-- <h3 class="m-0">Starter Page</h3> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content m-2">
+                    <div class="card" style="background-color:rgb(0, 200, 255);">
+                        <div class="container-fluid" style="background-color:white; margin-top:5px;">                          
+                                <h4 style="font-weight:500;">Edit Data Pegawai</h4>                       
+                        </div>
+                        <div class="container-fluid bg-white f-red" style="margin-top:-10px'">
+                            <hr>
+                        
+                            <div class="container-fluid mb-3">
+                               <form action="/edit/{{ $item->id }}" method="POST">
+
+
+                                @method('PUT')
+                                @csrf
+
+                                {{ csrf_field() }}
+
+                                {{-- @csrf
+                                @method('PUT') --}}
+
+                                <input type="text" id="nama_pegawai" name="nama_pegawai"  class="form-control mb-4" value="{{ $item->nama_pegawai }}">
+                                <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control mb-4" value="{{ $item->tanggal_lahir }}">
+                                <input type="email" id="email" name="email" class="form-control mb-4" value="{{ $item->email }}">
+                                <input type="text" id="nomor_telepon" name="nomor_telepon" class="form-control mb-4" value="{{ $item->nomor_telepon }}">
+                                <input type="email" id="role" name="role" class="form-control mb-3" value="{{ $item->email }}">
+
+                                <button class="btn btn-primary" type="submit">Change The Data</button>
+                                &nbsp;&nbsp;
+                                <a href="{{ route('cancel') }}" class="btn btn-danger">Cancel</a>
+
+                                
+                              
+                               </form>
+                            
+                              
+                            </div>
+                           
+                                
+                          
+                           
+                        </div>
+                    </div>
+                </div>
+                
         </div>
         {{-- Content wrapper --}}
         {{-- Main Footer --}}
@@ -197,7 +251,7 @@
 
 <style>
     .logo{
-        width: 35%;
+        width: 45%;
     }
 
 </style>

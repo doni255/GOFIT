@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/admin', function () {
     return view('pegawai/dashboard', [
         "title" => "Admin"
@@ -44,6 +45,13 @@ Route::get('/loginpage', function() {
     ]);
 });
 
+
+// Route::get('/edit-pegawai', function(){
+//     return view('/pegawai/edit/edit', [
+
+//     ]);
+// });
+
 Route::post('', [LoginController::class, 'logout'])->name('logout');
 
 
@@ -53,8 +61,26 @@ Route::resource('/pegawai', \App\Http\Controllers\PegawaiController::class);
 Route::resource('/presensi', \App\Http\Controllers\PresensigymController::class);
 Route::resource('/member', App\Http\Controllers\MemberController::class);
 
+Route::get('/edit/{id}', [PegawaiController::class, 'update'])->name('edit');
+Route::get('', [PegawaiController::class, 'cancel'])->name('cancel');
 
 Route::delete('/items/{id}', [PegawaiController::class, 'destroy'])->name('items.destroy');
+
+
+
+// Route::put('/items/{id}', [PegawaiController::class, 'update'])->name('items.update');
+
+
+// Route::put('/items/{id}', 'PegawaiController@update')->name('items.update');
+
+
+
+// Route::put('/pegawais/{id}', [PegawaiController::class, 'update'])->name('update');
+
+
+
+
+
 
 
 
