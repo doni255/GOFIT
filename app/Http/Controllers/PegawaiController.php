@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use Illuminate\Support\Collection;
 use App\Models\Pegawai;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Session;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PegawaiController extends Controller
 {
-
-
 
     //
     public function index(): View{
@@ -29,13 +26,26 @@ class PegawaiController extends Controller
 
     public function destroy($id)
 {
-    $item = Pegawai::findOrFail($id);
-    $item->delete();
+    $item = Pegawai::find($id);
+    // $item->delete();
     
     // You can also add a success message to be displayed later
-    session()->flash('delete', 'Pegawai Deleted Succesfully ^_^.');
+    // session()->flash('delete', 'Pegawai Deleted Succesfully ^_^.');
 
-    return redirect()->route('pegawai.index');
+    // return redirect()->route('pegawai.index');
+
+
+    if($item->delete()){
+        return response([
+            'message' => 'Delete succes 😂😂',
+            'data' => $item
+        ], 200);
+    }
+
+    return response ([
+        'message' => 'Delete failed',
+        'data'=> null
+    ], 400);
 }
 
 
@@ -62,7 +72,7 @@ public function update($id)
 public function cancel()
 {
  
-    session()->flash('edit', 'Edit Cancelled 😁');
+    session()->flash('edit_cancel', 'Edit Cancelled 😁');
 
     return redirect()->route('pegawai.index');
 }

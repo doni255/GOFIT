@@ -31,7 +31,7 @@
     $('.alert .close').on('click', function () {
     // Perform additional actions here
     // ...
-    
+        
     // Hide the notification
     $(this).closest('.alert').hide();
 });
@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 
-                <div class="content m-2">
+                <div class="content ">
                     <div class="card" style="background-color:rgb(0, 200, 255);">
                         <div class="container-fluid" style="background-color:white; margin-top:5px;">                          
                                 <h4 style="font-weight:500;">Edit Data Pegawai</h4>                       

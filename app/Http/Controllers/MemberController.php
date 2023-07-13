@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\RedirectResponse;
+
+// use Illuminate\Http\RedirectResponse;
 
 use Illuminate\View\View;
 
 use App\Models\Member;
+use App\Models\BookingGym;
 
 class MemberController extends Controller
 {
@@ -31,12 +33,19 @@ class MemberController extends Controller
     }
 
 
-    public function destroy(string $id):RedirectResponse
+    public function destroy($id)
     {   
-        
+        $item = Member::find($id);
+        $item2 = Booking_gym::find($item);
+
+        Booking_gym::destroy($item2);
         Member::destroy($id);
 
-        return redirect()->route('/member')->with('flash_message', 'Deleted Successfully');
+        // Member::destroy($id);    
+
+        return redirect()->route('member.index')->with('delete_notification', 'Deleted Successfully 😂😂😂');
+        // session()->flash('edit', 'Edit Cancelled 😁');
+
     }
 
 

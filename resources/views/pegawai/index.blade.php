@@ -46,11 +46,11 @@
                 </div>
             @endif 
 
-            @if (session('edit'))
+            @if (session('edit_cancel'))
             <div class="content">
                 <div class="text-center">
                     <div class="alert alert-danger" style="font-size: 150%;">
-                        {{ session('edit') }}
+                        {{ session('edit_cancel') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -93,7 +93,9 @@
                                                  
                                                         <a href="{{ url('edit', $item->id) }}">
                                                             <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                                                        </a>                                                                            
+                                                        </a>                                               
+                                                    
+                                                                                                
                                                      
                                                         
                                                     

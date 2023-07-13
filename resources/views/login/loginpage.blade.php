@@ -17,11 +17,11 @@
     @endif
 
 
-    <form name="f1" action="" onSubmit="return validation()" method="POST">
+    <form name="f1" onSubmit="return validation()" method="POST">
         @csrf
         <div class="mb-3">      
             <label for="email" class="form-label">Email</label>
-            <input class="form-control" type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email"          
+            <input class="form-control" type="text" id="username" name="username"  placeholder="Username"          
             >
         </div>
         <div class="mb-3">
@@ -42,23 +42,54 @@
 @endsection
 
 <script>
-    // function validation(){
-    //     var id = document.f1.email.value;
-    //     var ps = document.f1.password.value;
-    //     if(id.length == "" && ps.length == "") {
-    //         alert("Username & Password fields are empty");
-    //         return false;
-    //     }
-    //     else
-    //     {
-    //         if(id.length == ""){
-    //             alert("Email is empty");
-    //             return false;
-    //         }
-    //         if(ps.length == ""){
-    //             alert("Password is empty");
-    //         return false;
-    //         }      
-    //     }
-    // }
+    function validation() {
+        // ... logika validasi form (jika diperlukan) ...
+
+        // Kirim permintaan login ke server
+        fetch("{{ route('login') }}", {
+            method: "POST",
+            body: new FormData(document.querySelector("form[name='f1']")),
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Periksa apakah login berhasil
+            if (data && data.token) {
+                // Periksa peran pengguna
+                if (data.data && data.data.role) {
+                    const role = data.data.role.toLowerCase(); // Pastikan peran disimpan dalam huruf kecil
+                    // Alihkan halaman berdasarkan peran pengguna
+                    switch (role) {
+                        case "admin":
+                            window.location.href = "/admin"; // Ganti dengan URL halaman admin
+                            break;
+                        case "kasir":
+                            window.location.href = "/kasir"; // Ganti dengan URL halaman kasir
+                            break;
+                        case "mo":
+                            window.location.href = "/mo"; // Ganti dengan URL halaman mo
+                            break;
+                        default:
+                            // Jika tidak ada peran yang cocok, alihkan ke halaman lain atau tampilkan pesan kesalahan
+                            // Contoh:
+                            window.location.href = "/loginpage"; // Ganti dengan URL halaman default untuk pengguna tanpa peran khusus
+                            // Atau, tampilkan pesan kesalahan:
+                            // alert("Anda tidak memiliki izin akses ke halaman apa pun.");
+                    }
+                }
+            } else {
+                // Tampilkan pesan kesalahan jika login gagal
+                alert("Username atau password salah");
+            }
+        })
+        .catch(error => {
+            // Tampilkan pesan kesalahan jika terjadi error
+            console.error("Terjadi kesalahan:", error);
+        });
+
+        // Mencegah form submit langsung
+        return false;
+    }
 </script>

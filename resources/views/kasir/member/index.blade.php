@@ -33,6 +33,19 @@
     {{-- Container header --}}
     {{-- Main content --}}
     <div class="content">
+        <div class="text-center ml-3 mr-3   ">
+            @if (Session::has('delete_notification'))
+            <div class="alert alert-success">
+                {{ Session::get('delete_notification') }}
+                <button type="button" class="close" data-dismiss="alert"  aria-label="close">
+                    <span aria-hidden="true">
+                        <i class="fa-solid fa-xmark"></i>
+                    </span>
+                </button>
+            </div>
+                
+            @endif
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">

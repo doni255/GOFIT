@@ -51,7 +51,8 @@
                     </a>
                 </li>
             </ul>
-            {{-- Logout Navbar  --}}
+            
+              {{-- Logout Navbar  --}}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item ">
                     <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault(); confirmLogout();">
@@ -61,6 +62,8 @@
                         @csrf
                     </form>
                 </li>
+
+                
 
                 {{-- Navbar Search --}}
                 <li class="nav-item">
@@ -167,7 +170,20 @@
             {{-- sidebar --}}
         </aside>
         {{-- Content Wrapper. Contains page content --}}
-        <div class="content-wrapper">
+        <div class="content-wrapper">   
+            <div class="text-center">
+                <h2>
+                    @if (Session::has('login-notification'))
+                    <div class="alert alert-success">
+                        {{ Session::get('login-notification') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                </h2>
+            </div>
+
             @yield('content')
         </div>
         {{-- Content wrapper --}}
@@ -196,6 +212,7 @@
 
 
 <style>
+
     .logo{
         width: 35%;
     }

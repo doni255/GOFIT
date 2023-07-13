@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin</title>
+    <title>{{ $title }}</title>
     {{-- Google Font: Source Sans Pro --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     {{-- Font Awesome Icons --}}
@@ -11,9 +11,21 @@
     awesome/6.2.0/css/all.min.css">
     {{-- Theme style --}}
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
-    {{-- BOOSTRAP 5 --}}
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> --}}
     
+     {{-- Boostrap GLYPH --}}
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <script>
+        function confirmLogout()
+        {
+            if(confirm("Are you sure want to logouT?"))
+            {
+                document.getElementById('logout-form').submit();    
+            }
+        }
+     </script>
    
 </head>
 <body class="hold-transition sidebar-mini">
@@ -23,7 +35,7 @@
             {{-- Left navbar Links --}}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                    <a class="nav-link"  data-widget="pushmenu" href="#">
                         <i class="fas fa-bars"></i>
                     </a>
                 </li>
@@ -33,7 +45,7 @@
                 {{-- Navbar Search --}}
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-bars"></i>
                     </a>
                     <div class="navbar-search-block">
                         <form class="form-inline">
@@ -57,6 +69,10 @@
                     </a>
                 </li>
             </ul>
+
+          
+
+            
         </nav>
         {{-- /.navbar --}}
         {{-- Main Sidebar Container --}}

@@ -4,9 +4,13 @@ use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PresensigymController;
 use App\Http\Controllers\MemberController;
+
 use App\Http\Controllers\LoginController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\BookingGym;
 
 
 /*
@@ -41,7 +45,13 @@ Route::get('/register', function() {
 
 Route::get('/loginpage', function() {
     return view('/login/loginpage', [
-        "title" => "dog"
+        "title" => "Login"
+    ]);
+});
+
+Route::get('/blogpage', function(){
+    return view('/blog/body', [
+        "title" => "Home"           
     ]);
 });
 
@@ -52,14 +62,19 @@ Route::get('/loginpage', function() {
 //     ]);
 // });
 
-Route::post('', [LoginController::class, 'logout'])->name('logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('login', [LoginController::class, 'login'])->name('login');
 
+// Route::post('login', 'App\Http\Controllers\LoginController@login');
 
 //Route resource
 Route::resource('/departemen', \App\Http\Controllers\DepartemenController::class);
 Route::resource('/pegawai', \App\Http\Controllers\PegawaiController::class);
+Route::resource('/booking_gym', App\Http\Controllers\PegawaiController::class);
+
 Route::resource('/presensi', \App\Http\Controllers\PresensigymController::class);
 Route::resource('/member', App\Http\Controllers\MemberController::class);
+
 
 Route::get('/edit/{id}', [PegawaiController::class, 'update'])->name('edit');
 Route::get('', [PegawaiController::class, 'cancel'])->name('cancel');
