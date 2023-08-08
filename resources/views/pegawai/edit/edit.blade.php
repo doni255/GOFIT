@@ -188,7 +188,8 @@
                             <hr>
                         
                             <div class="container-fluid mb-3">
-                               <form action="/edit/{{ $item->id }}" method="POST">
+                               {{-- <form action="/edit/{{ $item->id }}" method="POST"> --}}
+                                <form action="{{ route('pegawai.update', $item->id) }}" method="POST">
 
 
                                 @method('PUT')
@@ -203,7 +204,7 @@
                                 <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control mb-4" value="{{ $item->tanggal_lahir }}">
                                 <input type="email" id="email" name="email" class="form-control mb-4" value="{{ $item->email }}">
                                 <input type="text" id="nomor_telepon" name="nomor_telepon" class="form-control mb-4" value="{{ $item->nomor_telepon }}">
-                                <input type="email" id="role" name="role" class="form-control mb-3" value="{{ $item->email }}">
+                                <input type="text" id="role" name="role" class="form-control mb-3" value="{{ $item->role }}">
 
                                 <button class="btn btn-primary" type="submit">Change The Data</button>
                                 &nbsp;&nbsp;

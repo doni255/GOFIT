@@ -36,9 +36,9 @@ class MemberController extends Controller
     public function destroy($id)
     {   
         $item = Member::find($id);
-        $item2 = Booking_gym::find($item);
+        // $item2 = Booking_gym::find($item);
 
-        Booking_gym::destroy($item2);
+        // Booking_gym::destroy($item2);
         Member::destroy($id);
 
         // Member::destroy($id);    

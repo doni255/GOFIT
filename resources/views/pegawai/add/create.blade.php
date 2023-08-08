@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
     {{-- Google Font: Source Sans Pro --}}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400,400i,700&display=fallback">
     {{-- Font Awesome Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     {{-- Theme style --}}
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
 
-    
 
     {{-- Boostrap GLYPH --}}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -27,22 +26,31 @@
         {
             document.getElementById('logout-form').submit();
         }
-    }
+    }image.png
 
     $('.alert .close').on('click', function () {
     // Perform additional actions here
     // ...
-    
+        
     // Hide the notification
     $(this).closest('.alert').hide();
 });
 
 
+function togglePasswordVisibility()
+{
+    var passwordInput = document.getElementById("passwordInput");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    }else {
+        passwordInput.type = "password";
+    }
+}
+
 </script>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        
         {{-- Navbar --}}
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             {{-- Left navbar Links --}}
@@ -53,8 +61,7 @@
                     </a>
                 </li>
             </ul>
-            
-              {{-- Logout Navbar  --}}
+            {{-- Logout Navbar  --}}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item ">
                     <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault(); confirmLogout();">
@@ -64,8 +71,6 @@
                         @csrf
                     </form>
                 </li>
-
-                
 
                 {{-- Navbar Search --}}
                 <li class="nav-item">
@@ -109,7 +114,7 @@
             {{-- Sidebar --}}
             <div class="sidebar">
                 {{-- Sidebar user panel (optional) --}}
-                {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                {{-- <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                     <div class="image">
                         <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
@@ -134,7 +139,17 @@
                 </div>
              
 
-                             
+                              {{-- Siderbar Menu Departemen --}}
+                              <nav class="">
+                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+                                    <li class="nav-item"> 
+                                        <a href="{{ url('departemen') }}" class="nav-link"> 
+                                            <i class="nav-icon far fa-circle"></i>
+                                             <p> Departemen</p> 
+                                            </a>
+                                         </li>
+                                         </ul>
+                              </nav>
 
                               {{-- Sidebar Menu Pegawai --}}
                               <nav class="">
@@ -162,21 +177,66 @@
             {{-- sidebar --}}
         </aside>
         {{-- Content Wrapper. Contains page content --}}
-        <div class="content-wrapper">   
-            <div class="text-center">
-                <h2>
-                    @if (Session::has('login-notification'))
-                    <div class="alert alert-success">
-                        {{ Session::get('login-notification') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-                </h2>
-            </div>
+        <div class="content-wrapper">
 
-            @yield('content')
+                <div class="content-header">
+                    <div class="container-xl">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{-- <h3 class="m-0">Starter Page</h3> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content ">
+                    <div class="card">
+                        
+                    </div>
+                    <form id="myForm" action="{{ route('store') }}" method="POST">
+                        @csrf
+                        <div class="card" style="background-color:rgb(0, 200, 255);">
+                            <div class="container-fluid" style="background-color:white; margin-top:5px;">                          
+                                    <h4 style="font-weight:500;">Tambah Data Pegawai</h4>                       
+                            </div>
+                            <div class="container-fluid bg-white f-red" style="margin-top:-10px'">
+                                <hr>                           
+                               <input type="text" id="nama_pegawai" name="nama_pegawai" class="form-control mb-4" placeholder="Nama" required>
+                               <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control mb-4" >
+                               <input type="email" id="email" name="email" class="form-control mb-4" placeholder="....@gmail.com" >
+                               <input type="text" id="nomor_telepon" name="nomor_telepon" class="form-control mb-4" placeholder="08xxxxxxxxxx" >
+
+                               
+                               <input type="text" id="role" name="role" class="form-control mb-4" placeholder="Role">
+
+    
+    
+                             
+                                    <div class="check_password">
+                                        <input type="password" id="passwordInput" name="password" class="form-control mb-4" >
+                                        <input class="ml-1" type="checkbox" id="showPasswordCheckbox" onclick="togglePasswordVisibility()">
+                                        <label for="showPasswordCheckbox">Show Password</label>
+                                    </div>
+
+                                    
+    
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-danger float-right px-4 ml-3"">Cancel</a>   
+                                    <input class="float-right btn btn-outline-primary mb-4 px-4" type="submit" class="btn btn-primary" value="Add" onclick="validateForm(event)">   
+                                    {{-- <input class="float-right btn btn-outline-danger mb-4" type="submit" class="btn btn-danger" value="">                            --}}
+                                                           
+                                        
+
+                            </div>                           
+                        </div>
+
+                       
+
+                    </form>
+
+                   
+
+                </div>
+                
         </div>
         {{-- Content wrapper --}}
         {{-- Main Footer --}}
@@ -187,7 +247,6 @@
     <strong>Copyright &copy; {{ date('Y') }} <a href="#">AdminLTE.io</a>. </strong> All rights reserved
         </footer>
     </div>
-
     {{-- wrapper --}}
     {{-- REQUIRED SCRIPTS --}}
     {{-- jQuery --}}
@@ -198,6 +257,34 @@
     {{-- AdminLTE App --}}
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
+
+
+
+<script>
+
+    function validateForm(event)
+    {
+        event.preventDefault();
+        
+        const nameInput = document.getElementById('nama_pegawai');
+
+        const nama_pegawai = nameInput.value.trim();
+
+        if (nama_pegawai === '')
+        {
+            alert('Please enter your name');
+            nama_pegawai.focus();
+            return false;
+        }
+
+        document.getElementById('myForm').submit();
+    }
+
+    document.getElementById('myForm').addEventListener('submit', validateForm);
+  </script>   
+                          
+
+
    
     
 </body>
@@ -205,9 +292,18 @@
 
 
 <style>
-
     .logo{
-        width: 35%;
+        width: 45%;
     }
+
+    .check_password
+    {
+        position: relative;
+        cursor: pointer;
+    }
+
+
+    
+  
 
 </style>

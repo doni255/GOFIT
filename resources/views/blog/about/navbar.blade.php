@@ -101,7 +101,26 @@
 
       </div>
     </nav>
-    @yield('body')
+    <div class="content">
+      <div class="body">
+        
+        {{-- <h3 style="color: white">SHAPE YOUR BODY</h3>
+  
+        <div class="home_body_text">
+          <span style="color: white">BE</span>
+          <span style="color: rgb(255, 119, 0)">STRONG</span>
+          <br />
+          <span style="color: white; margin-top: 50px">TRAINING HARD</span>
+        </div>
+        <!-- <button type="submit" class="button-get-info">GET INFO</button> -->
+        <a href="loginPage.php" class="button-get-info"
+          ><p style="text-align: center; margin-top: 14px">GET INFO</p></a
+        > --}}
+        <p style="color:whitesmoke;">sdadsa</p>
+
+      </div>
+    </div>
+    
 
    
 
@@ -188,12 +207,17 @@
   }
 
   .content {
-    margin: auto;
-    margin-right: 5cm;
-    margin-top: 150px;
-    display: flex;
-    width: 50%;
-    justify-content: center;
+    max-width: 500px;
+    border: 50px;
+     margin: auto;
+  }
+
+  .body{
+    
+    padding: 25px;
+    background-color: rgb(74, 72, 72);
+    opacity: 0.6;
+    border: 50px;
   }
 
   h6 {

@@ -20,7 +20,7 @@
     <form name="f1" onSubmit="return validation()" method="POST">
         @csrf
         <div class="mb-3">      
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label">Username</label>
             <input class="form-control" type="text" id="username" name="username"  placeholder="Username"          
             >
         </div>

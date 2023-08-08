@@ -41,6 +41,9 @@
                     </a>
                 </li>
             </ul>
+
+            
+
             {{-- Right navbar links --}}
             <ul class="navbar-nav ml-auto">
                 {{-- Navbar Search --}}
@@ -71,6 +74,7 @@
                 </li>
             </ul>
         </nav>
+        
         {{-- /.navbar --}}
         {{-- Main Sidebar Container --}}
         <aside class="main-sidebar sidebar-dark-primary elevation-4">

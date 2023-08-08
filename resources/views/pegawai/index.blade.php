@@ -10,6 +10,7 @@
                     <h1 class="m-0" style="font-weight:500; font-size:20px;">Pegawai</h1>
                 </div>
               
+
                 {{-- Col --}}
                 {{-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -21,14 +22,25 @@
                 </div> --}}
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <a href="#">
+                        <a href="{{ url('/add') }}">
                             <button class="btn btn-block btn-outline-success btn-lg" type="button">+</button>    
                         </a>                
                     </ol>
                 </div>
                 {{-- Col --}}
             </div>
-            {{-- row --}}
+          
+            {{-- <div class="text-center">
+                @if (session('edit_success'))
+                    <div class="alert alert-success">
+                        {{ session('edit_success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close"></button>
+                        <span aria-hidden="true">&times;</span>
+                    </div>
+                @endif
+                
+            </div> --}}
+            
         </div>
         {{-- Container Fluid --}}
     </div>
@@ -59,6 +71,27 @@
             </div>
             @endif
 
+            @if (session('edit_success'))
+            <div class="alert alert-success">
+                {{ session('edit_success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+           
+            </div>
+        @endif
+        
+
+            @if (session('add_success'))
+            <div class="alert alert-success">
+                {{ session('add_success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+            </div>
+                
+            @endif
+
             
         </div>
         <div class="container-fluid">
@@ -85,9 +118,9 @@
                                             <tr>                                         
                                                 <td class="text-center">{{ $item->nama_pegawai }}</td>
                                                 <td class="text-center">{{ $item->tanggal_lahir }}</td>        
-                                                <td class="text-center">{{ $item->email }}</td>                         
-                                                <td class="text-center">{{ $item->nomor_telepon }}</td>   
-                                                <td class="text-center">{{ $item->role }}</td>  
+                                                <td class="text-center">{{ $item->nomor_telepon }}</td>                         
+                                                <td class="text-center">{{ $item->role }}</td>   
+                                                <td class="text-center">{{ $item->email }}</td>  
                                                 <td></td>                                               
                                                 <td>
                                                  

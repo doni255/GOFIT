@@ -55,42 +55,53 @@ Route::get('/blogpage', function(){
     ]);
 });
 
+Route::get('/about', function(){
+    return view('/blog/about/navbar', [
+        "title" => "About Us"
+    ]);
+});
 
-// Route::get('/edit-pegawai', function(){
-//     return view('/pegawai/edit/edit', [
 
-//     ]);
-// });
+Route::get('/add', function () {
+    return view('/pegawai/add/create');
+});
+
 
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 
-// Route::post('login', 'App\Http\Controllers\LoginController@login');
+Route::get('/edit/{id}', [PegawaiController::class, 'edit'])->name('edit');
+Route::put('/edit/{id}', [PegawaiController::class, 'update'])->name('update');
+
+Route::get('items/create', [PegawaiController::class, 'create'])->name('create');
+Route::post('items', [PegawaiController::class, 'store'])->name('store');
+
+// Route::get('/items/create', 'App\Http\Controllers\PegawaiController@create')->name('items.create');
+// Route::post('/items', 'App\Http\Controllers\PegawaiController@store')->name('items.store');
+
+
+// Route::get('/data/create', [PegawaiController::class, 'create'])->name('data.create');
+
+Route::resource('/pegawai', \App\Http\Controllers\PegawaiController::class);
+Route::resource('/booking_gym', App\Http\Controllers\PegawaiController::class);
+
+
 
 //Route resource
 Route::resource('/departemen', \App\Http\Controllers\DepartemenController::class);
-Route::resource('/pegawai', \App\Http\Controllers\PegawaiController::class);
-Route::resource('/booking_gym', App\Http\Controllers\PegawaiController::class);
+
 
 Route::resource('/presensi', \App\Http\Controllers\PresensigymController::class);
 Route::resource('/member', App\Http\Controllers\MemberController::class);
 
 
-Route::get('/edit/{id}', [PegawaiController::class, 'update'])->name('edit');
+
+
 Route::get('', [PegawaiController::class, 'cancel'])->name('cancel');
 
 Route::delete('/items/{id}', [PegawaiController::class, 'destroy'])->name('items.destroy');
 
 
-
-// Route::put('/items/{id}', [PegawaiController::class, 'update'])->name('items.update');
-
-
-// Route::put('/items/{id}', 'PegawaiController@update')->name('items.update');
-
-
-
-// Route::put('/pegawais/{id}', [PegawaiController::class, 'update'])->name('update');
 
 
 

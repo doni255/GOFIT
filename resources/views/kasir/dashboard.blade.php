@@ -4,52 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
-    {{-- Google Font: Source Sans Pro --}}
+
+   {{-- Google Font: Source Sans Pro --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     {{-- Font Awesome Icons --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-
-    awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     {{-- Theme style --}}
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
-    
-     {{-- Boostrap GLYPH --}}
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-     <script>
-        function confirmLogout()
-        {
-            if(confirm("Are you sure want to logouT?"))
-            {
-                document.getElementById('logout-form').submit();    
-            }
-        }
-     </script>
+    
+
+    {{-- Boostrap GLYPH --}}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
    
 </head>
+
+<script>
+    function confirmLogout()
+    {
+        if(confirm("Are you sure want to logouT?"))
+        {
+            document.getElementById('logout-form').submit();    
+        }
+    }
+ </script>
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
+
         {{-- Navbar --}}
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">    
             {{-- Left navbar Links --}}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link"  data-widget="pushmenu" href="#">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button">
                         <i class="fas fa-bars"></i>
                     </a>
                 </li>
             </ul>
-            {{-- Right navbar links --}}
+            
+              {{-- Logout Navbar  --}}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault(); confirmLogout();">
+                        <i class="glyphicon glyphicon-log-out"></i>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+                
+
                 {{-- Navbar Search --}}
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-bars"></i>
+                        <i class="fas fa-search"></i>
                     </a>
-                    <div class="navbar-search-block">
+                    <div class="navbar-search-block" style="width:50%; margin-top:50%;">
                         <form class="form-inline">
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group">
                                 <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-navbar" type="submit">
@@ -69,10 +86,6 @@
                     </a>
                 </li>
             </ul>
-
-          
-
-            
         </nav>
         {{-- /.navbar --}}
         {{-- Main Sidebar Container --}}
@@ -110,7 +123,7 @@
 
                           
 
-                              {{-- Sidebar Menu Instruktur --}}
+                              {{-- Sidebar Menu Presensi --}}
                               <nav class="">
                                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                                     <li class="nav-item">
@@ -122,15 +135,17 @@
                                 </ul>
                               </nav>
                               {{-- Sidebar Menu Member --}}
-                              <nav>
-                                <ul class="nav nav-pills nav-sidebar flex-column data-widget="treeview" role="menu" data-accordion="false">
+                              <nav class="">
+                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                                     <li class="nav-item">
                                         <a href="{{ url('/member') }}" class="nav-link">
+                                            <i class="nav-icon far fa-circle"></i>
                                             <p>Member</p>
                                         </a>
                                     </li>
                                 </ul>
                               </nav>
+                            
             </div>
             {{-- sidebar --}}
         </aside>
@@ -147,6 +162,7 @@
     <strong>Copyright &copy; {{ date('Y') }} <a href="#">AdminLTE.io</a>. </strong> All rights reserved
         </footer>
     </div>
+
     {{-- wrapper --}}
     {{-- REQUIRED SCRIPTS --}}
     {{-- jQuery --}}
